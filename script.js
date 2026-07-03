@@ -1,75 +1,92 @@
-const API_KEY = "56c1a0d9fd9d4b6c86db22bb2e36f05f";
+const API_KEY = "0M4QB9F25QC6HF3D";
 
-// Edit this list
+// Hard-coded stocks
 const stocks = [
-    "TSLA"
+    "AAPL",
+    "MSFT",
+    "NVDA",
+    "TSLA",
+    "GOOGL"
+    // "VWRL" will probably not work on Alpha Vantage
 ];
 
 const tbody = document.querySelector("#stockTable tbody");
 
-async function loadStocks(){
+async function loadStocks() {
 
     tbody.innerHTML = "";
 
-    for(const symbol of stocks){
+    for (const symbol of stocks) {
 
-        try{
+        try {
 
             // Current quote
             const quoteResponse = await fetch(
-                `https://api.twelvedata.com/quote?symbol=${symbol}&apikey=${API_KEY}`
+                `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${API_KEY}`
             );
 
-            const quote = await quoteResponse.json();
+            const quoteData = await quoteResponse.json();
+            const quote = quoteData["Global Quote"];
 
-            // Last 6 daily closes
-            const historyResponse = await fetch(
-                `https://api.twelvedata.com/time_series?symbol=${symbol}&interval=1day&outputsize=6&apikey=${API_KEY}`
-            );
-
-            const history = await historyResponse.json();
-
-            if(!history.values){
+            if (!quote || Object.keys(quote).length === 0)
                 continue;
-            }
 
-            const today = parseFloat(history.values[0].close);
-            const yesterday = parseFloat(history.values[1].close);
-            const weekAgo = parseFloat(history.values[5].close);
+            // Daily history
+            const historyResponse = await fetch(
+                `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&outputsize=compact&apikey=${API_KEY}`
+            );
 
-            const dayChange =
-                ((today-yesterday)/yesterday*100).toFixed(2);
+            const historyData = await historyResponse.json();
+
+            const series = historyData["Time Series (Daily)"];
+
+            if (!series)
+                continue;
+
+            const dates = Object.keys(series);
+
+            const latestClose = parseFloat(series[dates[0]]["4. close"]);
+            const weekClose = parseFloat(series[dates[5]]["4. close"]);
 
             const weekChange =
-                ((today-weekAgo)/weekAgo*100).toFixed(2);
+                (((latestClose - weekClose) / weekClose) * 100).toFixed(2);
 
-            const row=document.createElement("tr");
+            const price = parseFloat(quote["05. price"]).toFixed(2);
+            const dayChange = parseFloat(
+                quote["10. change percent"].replace("%", "")
+            ).toFixed(2);
 
-            row.innerHTML=`
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
                 <td>${symbol}</td>
-                <td>${parseFloat(quote.close).toFixed(2)}</td>
-                <td class="${dayChange>=0?'up':'down'}">
+                <td>$${price}</td>
+
+                <td class="${dayChange >= 0 ? "up" : "down"}">
                     ${dayChange}%
                 </td>
-                <td class="${weekChange>=0?'up':'down'}">
+
+                <td class="${weekChange >= 0 ? "up" : "down"}">
                     ${weekChange}%
                 </td>
             `;
 
             tbody.appendChild(row);
 
-        }
-        catch(e){
-            console.log(e);
-        }
+            // Free Alpha Vantage API limit:
+            // 25 requests/day and 5 requests/minute.
+            await new Promise(resolve => setTimeout(resolve, 15000));
 
+        } catch (err) {
+            console.error(symbol, err);
+        }
     }
 
-    document.getElementById("updated").innerHTML =
+    document.getElementById("updated").textContent =
         new Date().toLocaleTimeString();
 }
 
 loadStocks();
 
-// Refresh every minute
-setInterval(loadStocks,60000);
+// Refresh every 5 minutes
+setInterval(loadStocks, 300000);
