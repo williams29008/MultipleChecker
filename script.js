@@ -1,4 +1,4 @@
-const API_KEY = "E0L19N09AUCR4FOO";
+const API_KEY = "56c1a0d9fd9d4b6c86db22bb2e36f05f";
 
 // Edit this list
 const stocks = [
