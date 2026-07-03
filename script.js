@@ -2,9 +2,6 @@ const API_KEY = "0M4QB9F25QC6HF3D";
 
 // Edit this list
 const stocks = [
-    "AAPL",
-    "MSFT",
-    "ARCC",
     "VWRL.L",
     "VUSA.L",
     "VHYL.L"
