@@ -2,9 +2,9 @@ const API_KEY = "56c1a0d9fd9d4b6c86db22bb2e36f05f";
 
 // Edit this list
 const stocks = [
-    "VWRL.LSE",
-    "VUSA.LSE",
-    "VHYL.LSE"
+    "VWRL.L",
+    "VUSA.L",
+    "VHYL.L"
 ];
 
 const tbody = document.querySelector("#stockTable tbody");
