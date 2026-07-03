@@ -5,8 +5,7 @@ const stocks = [
     "AAPL",
     "MSFT",
     "NVDA",
-    "TSLA",
-    "GOOGL"
+    "TSLA"
     // "VWRL" will probably not work on Alpha Vantage
 ];
 
