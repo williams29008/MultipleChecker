@@ -4,10 +4,10 @@ const API_KEY = "0M4QB9F25QC6HF3D";
 const stocks = [
     "AAPL",
     "MSFT",
-    "NVDA",
-    "VWRL",
-    "VUSA",
-    "TSLA"
+    "ARCC",
+    "VWRL.L",
+    "VUSA.L",
+    "VHYL.L"
 ];
 
 const tbody = document.querySelector("#stockTable tbody");
