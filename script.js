@@ -6,7 +6,7 @@ const stocks = [
     "MSFT",
     "NVDA",
     "TSLA"
-    // "VWRL" will probably not work on Alpha Vantage
+    // "VWRL" will probably not work on Alpha Vantag
 ];
 
 const tbody = document.querySelector("#stockTable tbody");
