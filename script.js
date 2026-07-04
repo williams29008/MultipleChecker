@@ -8,11 +8,15 @@ async function getKnots() {
         result.innerHTML = "Please enter a value";
         return;
     }
+        const Knots = valueNumber * 0.868976;
+        const MPH = valueNumber;
+        const ms = valueNumber * 0.44704;
+        
         result.innerHTML = `
             <h2>Results</h2>
-            <p><strong>MPH: </p>
-            <p><strong>Knots:</p>
-            <p><strong>Force:</p>
+            <p><strong>MPH: ${MPH} </p>
+            <p><strong>Knots: ${Knots}</p>
+            <p><strong>Metres/S: ${ms}</p>
         `;
 
 }
