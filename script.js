@@ -9,7 +9,7 @@ async function getKnots() {
         return;
     }
         result.innerHTML = `
-            <h2>Result in MPH</h2>
+            <h2>Results</h2>
             <p><strong>MPH: </p>
             <p><strong>Knots:</p>
             <p><strong>Force:</p>
