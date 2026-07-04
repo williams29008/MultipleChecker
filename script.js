@@ -1,13 +1,17 @@
 
 
 async function getKnots() {
-    const valueNumber = document.getElementById("valueNumber").value;
+    const valueInput = document.getElementById("valueNumber").value;
     const result = document.getElementById("result");
 
-    if (!valueNumber) {
+    // Empty check
+    if (valueInput === "") {
         result.innerHTML = "Please enter a value";
         return;
     }
+
+    // Convert to number
+    const valueNumber = Number(valueInput);
     
     if (isNaN(valueNumber)) {
         result.innerHTML = "Please enter a valid number";
