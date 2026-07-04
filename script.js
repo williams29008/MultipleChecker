@@ -1,4 +1,4 @@
-const API_KEY = "GXM6L34M04ISG2V0";
+const API_KEY = "E0L19N09AUCR4FOO";
 
 // Hard-coded stocks
 const stocks = [
