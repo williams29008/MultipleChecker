@@ -1,6 +1,6 @@
 
 
-async function getStockPrice() {
+async function getKnots() {
     const symbol = document.getElementById("symbol").value.trim().toUpperCase();
     const result = document.getElementById("result");
 
