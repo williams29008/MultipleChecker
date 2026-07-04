@@ -4,7 +4,7 @@ async function getKnots() {
     const valueNumber = document.getElementById("valueNumber").value;
     const result = document.getElementById("result");
 
-    if (!valueNumber) {
+    if (isNaN(valueNumber)) {
         result.innerHTML = "Please enter a value";
         return;
     }
@@ -14,9 +14,9 @@ async function getKnots() {
         
         result.innerHTML = `
             <h2>Results</h2>
-            <p><strong>MPH: ${MPH} </p>
-            <p><strong>Knots: ${Knots}</p>
-            <p><strong>Metres/S: ${ms}</p>
+            <p><strong>MPH: ${MPH.toFixed(1)} </p>
+            <p><strong>Knots: ${Knots.toFixed(1)}</p>
+            <p><strong>M/S: ${ms.toFixed(1)}</p>
         `;
 
 }
