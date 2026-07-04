@@ -30,3 +30,34 @@ async function getKnots() {
         `;
 
 }
+
+async function getMPH() {
+    const valueInput = document.getElementById("valueNumber").value;
+    const result = document.getElementById("result");
+
+    // Empty check
+    if (valueInput === "") {
+        result.innerHTML = "Please enter a value";
+        return;
+    }
+
+    // Convert to number
+    const valueNumber = Number(valueInput);
+    
+    if (isNaN(valueNumber)) {
+        result.innerHTML = "Please enter a valid number";
+        return;
+    }
+    
+        const Knots = valueNumber;
+        const MPH = valueNumber * 1.15078;
+        const ms = valueNumber * 0.514;
+        
+        result.innerHTML = `
+            <h2>Results</h2>
+            <p><strong>MPH: ${MPH.toFixed(1)}</strong></p>
+            <p><strong>Knots: ${Knots.toFixed(1)}</strong></p>
+            <p><strong>M/S: ${ms.toFixed(1)}</strong></p>
+        `;
+
+}
