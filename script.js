@@ -2,9 +2,6 @@ const API_KEY = "E0L19N09AUCR4FOO";
 
 // Hard-coded stocks
 const stocks = [
-    "AAPL",
-    "MSFT",
-    "NVDA",
     "TSLA"
 ];
 
