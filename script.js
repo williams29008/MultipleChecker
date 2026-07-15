@@ -21,12 +21,26 @@ async function getKnots() {
         const Knots = valueNumber * 0.868976;
         const MPH = valueNumber;
         const ms = valueNumber * 0.44704;
+		const F = 0;
+		switch (valueNumber) {
+			case (valueNumber < 1):
+				F = 0;
+				return;
+			case (valueNumber >= 1 && valueNumber < 3):
+				F = 1;
+				return;
+			case (valueNumber >= 4 && valueNumber < 7):
+				F = 3;
+				return;
+		}
         
         result.innerHTML = `
             <h2>Results</h2>
             <p><strong>MPH: ${MPH.toFixed(1)}</strong></p>
             <p><strong>Knots: ${Knots.toFixed(1)}</strong></p>
             <p><strong>M/S: ${ms.toFixed(1)}</strong></p>
+            <p><strong>Beaufort F = : ${F}</strong></p>
+			
         `;
 
 }
