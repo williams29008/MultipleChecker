@@ -21,7 +21,7 @@ async function getKnots() {
         const Knots = valueNumber * 0.868976;
         const MPH = valueNumber;
         const ms = valueNumber * 0.44704;
-		let F = 0;
+		let F;
 		switch (MPH) {
 			case (MPH < 1):
 				F = 0;
