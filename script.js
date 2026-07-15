@@ -22,14 +22,14 @@ async function getKnots() {
         const MPH = valueNumber;
         const ms = valueNumber * 0.44704;
 		let F = 0;
-		switch (valueNumber) {
-			case (valueNumber < 1):
+		switch (MPH) {
+			case (MPH < 1):
 				F = 0;
 				return;
-			case (valueNumber >= 1 && valueNumber < 3):
+			case (MPH <= 3):
 				F = 1;
 				return;
-			case (valueNumber >= 4 && valueNumber < 7):
+			case (MPH <= 7):
 				F = 3;
 				return;
 		}
