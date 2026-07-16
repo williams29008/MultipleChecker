@@ -30,7 +30,37 @@ async function getKnots() {
 				F = 1;
 				break;
 			case (MPH <= 7):
+				F = 2;
+				break;
+			case (MPH <= 12):
 				F = 3;
+				break;
+			case (MPH <= 18):
+				F = 4;
+				break;
+			case (MPH <= 24):
+				F = 5;
+				break;
+			case (MPH <= 31):
+				F = 6;
+				break;
+			case (MPH <= 38):
+				F = 7;
+				break;
+			case (MPH <= 46):
+				F = 8;
+				break;
+			case (MPH <= 54):
+				F = 9;
+				break;
+			case (MPH <= 63):
+				F = 10;
+				break;
+			case (MPH <= 72):
+				F = 11;
+				break;
+			case (MPH >= 73):
+				F = 12;
 				break;
 		}
         
